@@ -100,10 +100,10 @@ If, after two shots in a frame, at least one pin is still standing, it’s calle
 At this point we know that a game consists of 10 frames with 2 rolls each, so twenty chances to score points
 A game is simply the sum of the pin counts
 Let’s talk about:
-.Modelling
-.Testing
-.Implementing
-.Refactoring
+* Modelling
+* Testing
+* Implementing
+* Refactoring
 
 
 ####Strikes and Spares
@@ -121,10 +121,10 @@ Many people understand the basics but get confused when trying to add everything
 Considering spares, a game still consists of twenty rolls of the ball
 A game is no longer simply the sum of the pin counts, but something a little more complicated
 Let’s talk about:
-.Modelling
-.Testing
-.Implementing
-.Refactoring
+* Modelling
+* Testing
+* Implementing
+* Refactoring
 
 ####Scoring a Strike
 A strike is worth 10, plus the value of your next two rolls.
@@ -135,10 +135,10 @@ Gotcha: If you roll two strikes in a row, the first will double-count the rolls 
 Considering strikes, a game consists of twenty or less rolls of the ball (it doesn’t seem fair that someone doing well gets less scoring chances!)
 A game is much more complicated
 Let’s talk about:
-.Modelling (how is it holding up?)
-.Testing
-.Implementing
-.Refactoring
+* Modelling (how is it holding up?)
+* Testing
+* Implementing
+* Refactoring
 
 ####The Tenth Frame
 Sounds like a good name for a bowling pub!
@@ -151,7 +151,7 @@ The usual scoring rules apply
 Considering the tenth frame, a game consists of twenty-one or less rolls of the ball
 A game is much, much more complicated
 Let’s talk about:
-.Modelling
-.Testing (how to do this easily?)
-.Implementing
-.Refactoring
+* Modelling
+* Testing (how to do this easily?)
+* Implementing
+* Refactoring
