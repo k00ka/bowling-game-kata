@@ -1,7 +1,7 @@
 Bowling Game Kata TDD Workshop
 ==============================
 
-This repo contains an exercise for the fifth Ruby Hacak Night workshop presented by me, David Andrews. This workshop is about full-scale TDD, integrating all of the ideas presented in the first four workshops. For this session we have based our activities on Uncle Bob's Bowling Game kata.
+This repo contains an exercise for the fifth Ruby Hack Night workshop presented by me, David Andrews. This workshop is about full-scale TDD, integrating all of the ideas presented in the first four workshops. For this session I have chosen to base our activities on Uncle Bob's Bowling Game kata.
 
 I've restructured the repository to provide a quick-start to TDD with RSpec and to mimic the setup we used in several of the previous workshops. The code to be created is found in the ``lib/`` directory, and I have supplied a start to the unit tests in the ``spec/`` directory.
 
@@ -89,7 +89,7 @@ rspec ./spec/bowling_game_spec.rb:12 # BowlingGame#score the score is 0 for a ne
 The text ``1 failure`` means you're currently "failing the Bowling Game Kata"! Now go fix some code and share what you've learned with the group.
 
 ###The Exercise
-Carefully follow the TDD workflow described above. The focus should be on learning the workflow, not how clever you can be with the code. Try not to write generalized solutions, but focus on the simplest, minimal code for each requirement. Most people can see that a split followed by calling to_i and summing the values is the end goali here. The point is to focus on minimalism, not on projecting general solutions.
+Carefully follow the TDD workflow described above. The focus should be on learning the workflow, not how clever you can be with the code. Try not to write generalized solutions, but focus on the simplest, minimal code for each requirement. The point is to focus on minimalism, not on projecting general solutions.
 
 ####Scoring Basics
 One game of bowling consists of 10 frames, with a minimum score of zero and a maximum of 300. Each frame consists of two chances to knock down 10 pins. Pins are points.
@@ -97,8 +97,10 @@ One game of bowling consists of 10 frames, with a minimum score of zero and a ma
 If, after two shots in a frame, at least one pin is still standing, it’s called an open frame. Open frames are taken at face value, your score is the sum of the pins knocked down.
 
 ####Implement Basic Scoring
-At this point we know that a game consists of 10 frames with 2 rolls each, so twenty chances to score points
-A game is simply the sum of the pin counts
+At this point we know that:
+1. a game consists of 10 frames with 2 rolls each, so twenty chances to score points
+2. A game is simply the sum of the pin counts
+
 Let’s talk about:
 * Modelling
 * Testing
@@ -107,19 +109,23 @@ Let’s talk about:
 
 
 ####Strikes and Spares
-Strikes and spares can be worth more points than the count of pins knocked down.
+Strikes and spares can be worth more points than the count of pins knocked down. 
+
 Knocking down all 10 pins on your first ball in a frame is called a strike, denoted by an “X” on the score sheet. If it takes two shots to knock down all 10 pins, it’s called a spare, denoted by a “/” on the score sheet. If neither of these happens, it’s an open frame.
 
 ####Scoring a Spare
-A spare is worth 10, plus the value of your next roll.
+A spare is worth 10, plus the value of your next roll. 
+
 Say you throw a spare in the first frame. Technically, you don't have a score yet, but you know it’s at least 10. You need to throw another ball to figure out your total score for that frame. In the second frame, if you knock down 5 pins on the first ball, your score is (10 + 5) + (5). If you then knock down 3 more, your score is (10 + 5) + (5 + 3). The 5 counts twice!
 
 ####*Focus on Frames* for Scoring
 Many people understand the basics but get confused when trying to add everything up. Your total score is nothing more than the sum of each individual frame. If you treat each frame individually, it's much easier to comprehend the scoring system.
 
 ####Implement Spare Scoring
-Considering spares, a game still consists of twenty rolls of the ball
-A game is no longer simply the sum of the pin counts, but something a little more complicated
+Considering spares, a game still consists of twenty rolls of the ball. 
+
+A game is no longer simply the sum of the pin counts, but something a little more complicated. 
+
 Let’s talk about:
 * Modelling
 * Testing
@@ -127,13 +133,17 @@ Let’s talk about:
 * Refactoring
 
 ####Scoring a Strike
-A strike is worth 10, plus the value of your next two rolls.
+A strike is worth 10, plus the value of your next two rolls. 
+
 Say you throw a strike in the first frame. Technically, you don't have a score yet, but you know it’s at least 10. You need to throw two more balls to figure out your total score for that frame. In the second frame, if you knock down 6 pins on the first ball, your score is at least (10 + 6) + (6). If you then knock down 2 more, your score is (10 + 6 + 2) + (6 + 2). The 6 + 2 count twice.
+
 Gotcha: If you roll two strikes in a row, the first will double-count the rolls in the next two frames!
 
 ####Implement Strike Scoring
-Considering strikes, a game consists of twenty or less rolls of the ball (it doesn’t seem fair that someone doing well gets less scoring chances!)
-A game is much more complicated
+Considering strikes, a game consists of twenty or less rolls of the ball (it doesn’t seem fair that someone doing well gets less scoring chances!) 
+
+Considering strikes, game scoring is much more complicated.
+
 Let’s talk about:
 * Modelling (how is it holding up?)
 * Testing
@@ -141,15 +151,18 @@ Let’s talk about:
 * Refactoring
 
 ####The Tenth Frame
-Sounds like a good name for a bowling pub!
+Sounds like a good name for a bowling pub! 
+
 The tenth frame is special:
-all bowlers get to roll three balls in all cases
-strikes or spares cause all of the pins to be reset mid-frame
-The usual scoring rules apply
+* all bowlers get to roll three balls in all cases
+* strikes or spares cause all of the pins to be reset mid-frame
+* The usual scoring rules apply
 
 ####Implement the Tenth Frame Scoring
 Considering the tenth frame, a game consists of twenty-one or less rolls of the ball
-A game is much, much more complicated
+
+With the tenth frame, game scoring is much, much more complicated
+
 Let’s talk about:
 * Modelling
 * Testing (how to do this easily?)
