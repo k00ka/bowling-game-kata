@@ -10,7 +10,7 @@ I've restructured the repository to provide a quick-start to TDD with RSpec and 
 Here are the steps to get you started with the repo. We assume, naturally, that you have a working development machine with Ruby 1.9 or better on it. At Ryatta Group we use rbenv, and so we've included some optional elements - just skip them if you're using rvm or are not versioning your Ruby.
 
 ```sh
-% git clone git@github.com:k00ka/bowling-game-kata.git
+% git clone https://github.com/k00ka/bowling-game-kata.git
 % cd bowling-game-kata
 % gem install bundler
 Fetching: bundler-1.7.4.gem (100%)
