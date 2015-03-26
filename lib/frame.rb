@@ -1,17 +1,9 @@
 class Frame
+  attr_reader :next_frame, :rolls
+
   def initialize(next_frame)
     @rolls = []
     @next_frame = next_frame
-  end
-
-  # getter method for rolls
-  def rolls
-    @rolls
-  end
-
-  # getter method for next frame
-  def next_frame
-    @next_frame
   end
 
   def spare?
