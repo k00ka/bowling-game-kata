@@ -1,14 +1,24 @@
+require 'frame'
+
 class BowlingGame
 
-  def roll(pins_knocked_down)
-    # called multiple times to simulate a person throwing a ball and knocking down pins
+  def initialize
+    @frames = Frame.create_frames
+    @current_frame = 1
+  end
+
+  def roll(pin_count)
+    return if @frames[9].bowled? # game over, dude
+    @frames[@current_frame-1].roll(pin_count)
+    @current_frame += 1 if @frames[@current_frame-1].bowled?
   end
 
   def score
-    # called to retrieve the current score
+    @frames.map(&:score).reduce(&:+)
   end
 
-private
-  # ...and here when the above becomes too complex.
+  def frames_inspect
+    @frames.map(&:rolls_inspect).join(" | ") + "\n" + @frames.map(&:score).join(" | ")
+  end
 
 end
