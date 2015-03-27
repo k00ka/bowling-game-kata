@@ -20,9 +20,6 @@ class BowlingGame
     end
     @score
   end
-
-private
-
 end
 
 

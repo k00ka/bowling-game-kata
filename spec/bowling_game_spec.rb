@@ -51,4 +51,40 @@ RSpec.describe BowlingGame, "#score" do
     game.roll(5)
     expect(game.score).to eql(25)
   end
+
+  it 'knows the score is 40 for rolls of 2,3,4,6,5,5,5' do
+    game.roll(2)
+    game.roll(3)
+    game.roll(4)
+    game.roll(6)
+    game.roll(5)
+    game.roll(5)
+    game.roll(5)
+    expect(game.score).to eql(40)
+  end
+
+  it 'knows the score is 24 for rolls of 10,4,3' do
+    game.roll(10)
+    game.roll(4)
+    game.roll(3)
+    expect(game.score).to eql(24)
+  end
+
+  it 'knows the score is 40 for rolls of 10,4,3,10,2,1' do
+    game.roll(10)
+    game.roll(4)
+    game.roll(3)
+    game.roll(10)
+    game.roll(2)
+    game.roll(1)
+    expect(game.score).to eql(40)
+  end
+
+  it 'knows the score is 40 for rolls of 10,4,3,10,2,1' do
+    game.roll(10)
+    game.roll(10)
+    game.roll(4)
+    game.roll(2)
+    expect(game.score).to eql(46)
+  end
 end
