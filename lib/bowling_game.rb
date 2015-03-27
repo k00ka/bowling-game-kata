@@ -1,11 +1,16 @@
 require 'frame'
+require 'tenth_frame'
+
 class BowlingGame
   def initialize
     @score = 0
     @frames = []
-    9.downto(0) do |n|
+    @frames[9] = TenthFrame.new
+
+    8.downto(0) do |n|
       @frames[n] = Frame.new(@frames[n+1]) 
     end
+
     @current_frame = @frames[0] 
   end
 

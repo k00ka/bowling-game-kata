@@ -48,7 +48,7 @@ class Frame
   end
 
   def strike_scoring_applies?
-    strike? && !next_frame.has_more_rolls?
+    strike? && next_frame.rolls.size >= 1 
   end
 
   def spare_scoring
@@ -56,7 +56,13 @@ class Frame
   end
 
   def strike_scoring
-    if next_frame.strike? && !next_frame.next_frame.has_more_rolls?
+    if next_frame.class == TenthFrame 
+      if next_frame.rolls.size >= 2
+        @score = 10 + next_frame.rolls[0,2].reduce(:+)
+      else
+        @score = points_from_rolls
+      end
+    elsif next_frame.strike? && next_frame.next_frame.rolls.size >= 1
       @score = 20 + next_frame.next_frame.rolls[0]
     else
       @score = 10 + next_frame.points_from_rolls
