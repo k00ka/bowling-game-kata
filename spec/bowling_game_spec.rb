@@ -39,6 +39,12 @@ RSpec.describe BowlingGame, "#score" do
   it 'knows the score is 4 for a roll of 1 and a roll of 4' do
     game.roll(5)
     game.roll(5)
+    expect(game.score).to eql(10)
+  end
+
+  it 'knows the score is 4 for a roll of 1 and a roll of 4' do
+    game.roll(5)
+    game.roll(5)
     game.roll(5)
     expect(game.score).to eql(20)
   end
