@@ -7,7 +7,7 @@ class Frame
   end
 
   def spare?
-    if points_from_rolls == 10 && !strike?
+    if regular_points == 10 && !strike?
       true
     else
       false
@@ -26,33 +26,29 @@ class Frame
     end
   end
 
-  def points_from_rolls
+  def regular_points
     points = rolls.reduce(:+)
     points ? points : 0
   end
 
   def score
-    if spare_scoring_applies? 
+    if spare? 
       spare_scoring
-    elsif strike_scoring_applies? 
+    elsif strike? 
       strike_scoring
     else
-      @score = points_from_rolls
+      @score = regular_points
     end
   end
 
   private
 
-  def spare_scoring_applies?
-    spare? && !next_frame.rolls[0].nil? 
-  end
-
-  def strike_scoring_applies?
-    strike? && next_frame.rolls.size >= 1 
-  end
-
   def spare_scoring
-    @score = points_from_rolls + next_frame.rolls[0]
+    if !next_frame.rolls[0].nil?
+      @score = regular_points + next_frame.rolls[0]
+    else
+      @score = regular_points
+    end
   end
 
   def strike_scoring
@@ -60,12 +56,12 @@ class Frame
       if next_frame.rolls.size >= 2
         @score = 10 + next_frame.rolls[0,2].reduce(:+)
       else
-        @score = points_from_rolls
+        @score = regular_points
       end
     elsif next_frame.strike? && next_frame.next_frame.rolls.size >= 1
       @score = 20 + next_frame.next_frame.rolls[0]
     else
-      @score = 10 + next_frame.points_from_rolls
+      @score = 10 + next_frame.regular_points
     end
   end
 end
