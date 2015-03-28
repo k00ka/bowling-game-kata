@@ -1,14 +1,30 @@
+require 'frame'
+require 'tenth_frame'
+
 class BowlingGame
+  def initialize
+    @score = 0
+    @frames = []
+    @frames[9] = TenthFrame.new
+
+    8.downto(0) do |n|
+      @frames[n] = Frame.new(@frames[n+1]) 
+    end
+
+    @current_frame = @frames[0] 
+  end
 
   def roll(pins_knocked_down)
-    # called multiple times to simulate a person throwing a ball and knocking down pins
+    @current_frame = @current_frame.next_frame unless @current_frame.has_more_rolls?
+    @current_frame.rolls << pins_knocked_down
   end
 
   def score
-    # called to retrieve the current score
+    @frames.each do |frame|
+      @score += frame.score
+    end
+    @score
   end
-
-private
-  # ...and here when the above becomes too complex.
-
 end
+
+
